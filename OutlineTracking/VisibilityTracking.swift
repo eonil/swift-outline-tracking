@@ -24,6 +24,7 @@ public struct VisibilityTracking<K> where K:Comparable & Hashable {
     private(set) var rootValue = State(isExpanded: true, totalDescendantsCount: 0, totalVisibleDescendantsCount: 0)
     private(set) var tree = KVLTStorage<K,State>()
     private(set) var ptt = ParentChildTracking<K>()
+    public init() {}
 }
 extension VisibilityTracking {
     struct State {
