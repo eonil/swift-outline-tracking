@@ -170,7 +170,8 @@ public extension VisibilityTracking {
         }
     }
     /// Replays topological changes in supplied stepping `x`.
-    mutating func replay<V>(_ x:PDKVLTRepository<K,V>.Step) where K:Comparable {
+    /// This does not verify step point timestamps.
+    mutating func replayUnconditionally<V>(_ x:PDKVLTRepository<K,V>.Step) where K:Comparable {
         // Replay VTT.
         switch x {
         case .values(_):
@@ -191,6 +192,11 @@ public extension VisibilityTracking {
                     insertSubtree(t, at: b.range.lowerBound+i, in: pk)
                 }
             }
+        }
+    }
+    mutating func replayUnconditionally<V>(_ x:PDKVLTRepository<K,V>.Timeline) where K:Comparable {
+        for s in x.steps {
+            replayUnconditionally(s)
         }
     }
 }
