@@ -155,5 +155,36 @@ class VisibilityTrackingTest: XCTestCase {
         }
         XCTAssertEqual(x.tree.collection[0].key, 22)
     }
+    func testTwoDepthAppendReplay() {
+        var r = PDKVLTRepository<Int,String>()
+        var x = VisibilityTracking<Int>()
+        r.insert((11,"a"), at: 0, in: nil)
+        r.insert((11_11,"aa"), at: 0, in: 11)
+        r.insert((11_22,"ab"), at: 1, in: 11)
+        for s in r.timeline.steps {
+            x.replay(s)
+        }
+        XCTAssertEqual(x.tree.collection[0].key, 11)
+        XCTAssertEqual(x.tree.collection[0].collection[0].key, 11_11)
+        XCTAssertEqual(x.tree.collection[0].collection[1].key, 11_22)
+    }
+    func testTwoDepthInsertReplay() {
+        var r = PDKVLTRepository<Int,String>()
+        var x = VisibilityTracking<Int>()
+        r.insert((11,"a"), at: 0, in: nil)
+        r.insert((11_11,"aa"), at: 0, in: 11)
+        r.insert((11_22,"ab"), at: 0, in: 11)
+        for s in r.timeline.steps {
+            x.replay(s)
+        }
+        XCTAssertEqual(x.tree.collection[0].key, 11)
+        XCTAssertEqual(x.tree.collection[0].collection[0].key, 11_22)
+        XCTAssertEqual(x.tree.collection[0].collection[1].key, 11_11)
+        x.setExpansionState(true, of: 11)
+        x.setExpansionState(true, of: 11_22)
+        XCTAssertEqual(x.find(atVisibleOffset: 0), 11)
+        XCTAssertEqual(x.find(atVisibleOffset: 1), 11_22)
+        XCTAssertEqual(x.find(atVisibleOffset: 2), 11_11)
+    }
 }
 

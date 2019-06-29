@@ -75,6 +75,8 @@ extension VisibilityTracking {
             let k = t.key
             guard d1 > 0 else { return (i,pk) }
             let v = t.value
+            print(d1)
+            print(v.totalVisibleCount)
             if d1 < v.totalVisibleCount {
                 return findPosition(atVisibleOffset: d1-1, in: k)
             }
