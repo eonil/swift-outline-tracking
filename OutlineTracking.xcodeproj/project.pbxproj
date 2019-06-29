@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4580D84622C7233B00DEF8BA /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4580D84522C7233B00DEF8BA /* Package.swift */; };
 		45E4011E22C66BB300C5395A /* VisibilityTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E4010E22C66B6000C5395A /* VisibilityTracking.swift */; };
 		45E4012622C66BDA00C5395A /* VisibilityTrackerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E4012522C66BDA00C5395A /* VisibilityTrackerTest.swift */; };
 		45E4012822C66BDA00C5395A /* libOutlineTracking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E4011422C66B9D00C5395A /* libOutlineTracking.a */; };
@@ -214,7 +213,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4580D84622C7233B00DEF8BA /* Package.swift in Sources */,
 				45E4013122C66C8300C5395A /* ParentChildTracking.swift in Sources */,
 				45E4011E22C66BB300C5395A /* VisibilityTracking.swift in Sources */,
 			);
