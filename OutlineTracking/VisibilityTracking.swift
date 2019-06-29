@@ -169,9 +169,6 @@ public extension VisibilityTracking {
     }
     /// Replays topological changes in supplied stepping `x`.
     mutating func replay<V>(_ x:PDKVLTRepository<K,V>.Step) where K:Comparable {
-        // Update PTT.
-        ptt.replay(x)
-
         // Replay VTT.
         switch x {
         case .values(_):

@@ -127,5 +127,13 @@ class VisibilityTrackingTest: XCTestCase {
         XCTAssertEqual(x.find(atVisibleOffset: 2), 11_11_11)
         XCTAssertEqual(x.find(atVisibleOffset: 3), 11_11_22)
     }
+    func testTwoStepReplay() {
+        var r = PDKVLTRepository<Int,String>()
+        var x = VisibilityTracking<Int>()
+        r.insert((11,"a"), at: 0, in: nil)
+        r.insert((22,"b"), at: 1, in: nil)
+        x.replay(r.timeline.steps[0])
+        x.replay(r.timeline.steps[1])
+    }
 }
 
