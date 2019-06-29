@@ -85,6 +85,9 @@ extension VisibilityTracking {
     }
 }
 public extension VisibilityTracking {
+    func expansionState(of k:K) -> Bool {
+        return state(for: k).isExpanded
+    }
     mutating func setExpansionState(_ b:Bool, of k:K) {
         let ks = keys(to: k)
         var vs = states(for: ks)
