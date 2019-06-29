@@ -179,14 +179,14 @@ public extension VisibilityTracking {
             // Apply removals.
             do {
                 for i in a.range.lazy.reversed() {
-                    removeSubtree(at: i, in: pk)
+                    removeSubtree(at: a.range.lowerBound+i, in: pk)
                 }
             }
             // Apply insertions.
             do {
                 let ts = b.snapshot.collection(of: pk)[b.range]
                 for (i,t) in ts.enumerated() {
-                    insertSubtree(t, at: i, in: pk)
+                    insertSubtree(t, at: b.range.lowerBound+i, in: pk)
                 }
             }
         }
